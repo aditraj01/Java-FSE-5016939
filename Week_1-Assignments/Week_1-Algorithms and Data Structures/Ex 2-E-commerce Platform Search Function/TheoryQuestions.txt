@@ -1,0 +1,77 @@
+Q1. Explain why data structures and algorithms are essential in handling large inventories.
+
+Ans. 
+Big O Notation
+Big O notation is a mathematical notation used to describe the upper bound of an algorithm's runtime or space requirements in terms of the input size n. It provides a high-level understanding of the algorithm's efficiency and scalability by focusing on the growth rate of the runtime or space as the input size increases.
+•	Best-case: The scenario where the algorithm performs the minimum number of operations.
+•	Average-case: The expected scenario where the algorithm performs an average number of operations.
+•	Worst-case: The scenario where the algorithm performs the maximum number of operations.
+
+Q2. Describe the best, average, and worst-case scenarios for search operations
+
+Ans.
+
+Linear Search
+
+Best-case:
+
+Scenario: The target element is the first element in the array.
+Time Complexity: O(1)
+Explanation: Only one comparison is needed to find the element.
+
+Average-case:
+
+Scenario: The target element is somewhere in the middle of the array.
+Time Complexity: O(n)
+Explanation: On average, you would need to check half of the elements before finding the target.
+
+Worst-case:
+
+Scenario: The target element is the last element in the array or not present at all.
+Time Complexity: O(n)
+Explanation: You need to check all elements in the array.
+
+Binary Search
+
+Best-case:
+
+Scenario: The target element is at the middle of the array.
+Time Complexity: O(1)
+Explanation: Only one comparison is needed to find the element.
+
+Average-case:
+
+Scenario: The target element is randomly placed in the sorted array.
+Time Complexity: O(log n)
+Explanation: On average, the search space is halved with each comparison, leading to a logarithmic number of comparisons.
+
+Worst-case:
+
+Scenario: The target element is not in the array, or every time the algorithm divides the search space, it must search all the way to the end.
+Time Complexity: O(log n)
+Explanation: The maximum number of comparisons required is proportional to the logarithm of the number of elements.
+
+Q3. Compare the time complexity of linear and binary search algorithms.
+
+Ans.
+
+Linear Search:
+
+Search by ID/Name/Category:
+
+Best-case: O(1)
+Average-case: O(n)
+Worst-case: O(n)
+
+Binary Search:
+
+Search by ID/Name:
+Best-case: O(1)
+Average-case: O(log n)
+Worst-case: O(log n)
+
+Q4. Discuss which algorithm is more suitable for your platform and why.
+
+Ans.
+
+For a platform with large and frequently queried datasets, binary search is more suitable due to its O(log n) time complexity, offering faster searches compared to linear search's O(n). However, binary search requires data to be sorted which takes O(n logn) time complexity at best which is not suited for large datasets.
