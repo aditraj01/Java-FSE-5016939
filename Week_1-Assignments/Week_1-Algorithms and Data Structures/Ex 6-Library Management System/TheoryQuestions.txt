@@ -1,0 +1,26 @@
+Q1. Explain linear search and binary search algorithms
+
+Ans.
+
+Linear Search: Linear search involves checking each element in a list sequentially until the desired element is found or the list is exhausted.
+O(n) in the worst and average case, where n is the number of elements in the list.
+
+Binary Search: Binary search works on sorted lists by repeatedly dividing the search interval in half. It compares the target value to the middle element of the list; if they are not equal, the half in which the target cannot lie is eliminated, and the search continues on the remaining half.
+O(log n) in the worst and average case, where n is the number of elements in the list. List must be sorted to use Binary Search.
+
+Q2. Compare the time complexity of linear and binary search.
+
+Ans.
+
+Time Complexity of Linear and Binary Search
+Linear Search: O(n) - Each element is checked sequentially, so the time increases linearly with the number of elements.
+Binary Search: O(log n) - The search interval is halved with each step, so the time complexity is logarithmic relative to the number of elements.
+
+Q3. Discuss when to use each algorithm based on the data set size and order
+
+Ans.
+
+Linear Search is suitable for small datasets where the overhead of sorting is unnecessary. It is useful when the list is unsorted or rarely searched.
+
+Binary Search is ideal for large datasets where the search efficiency outweighs the cost of sorting but it requires the list to be sorted. If frequent searches are performed, maintaining a sorted list (e.g., with a balanced binary search tree or sorted array) can be beneficial.
+
