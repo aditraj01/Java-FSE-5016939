@@ -1,0 +1,17 @@
+Q1. Explain the concept of recursion and how it can simplify certain problems.
+
+Ans.
+
+Recursion is a programming technique where a function calls itself directly or indirectly to solve a problem. Each recursive call reduces the problem into smaller instances until reaching a base case, which stops the recursion.Recursion can simplify the solution of problems that have a natural hierarchical or repetitive structure, such as mathematical computations (e.g., factorials, Fibonacci sequences), tree traversals, and dynamic programming problems.
+
+Q2. Discuss the time complexity of your recursive algorithm.
+
+Ans.
+
+The time complexity of the recursive algorithm is O(n) because each recursive call reduces the number of periods by one, resulting in a total of n recursive calls.
+
+Q3. Explain how to optimize the recursive solution to avoid excessive computation.
+
+Ans.
+
+Memoization: One way to optimize the recursive solution is to use memoization, where intermediate results are stored and reused to avoid redundant computations. This is particularly useful if the same subproblems are solved multiple times.
