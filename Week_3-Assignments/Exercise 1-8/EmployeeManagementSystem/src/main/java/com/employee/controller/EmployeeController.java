@@ -29,7 +29,6 @@ public class EmployeeController {
 
         Pageable pageable = PageRequest.of(page, size);
         Page<Employee> employees = employeeRepository.findAll(pageable);
-
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
     

@@ -14,10 +14,15 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	// Derived query methods
     List<Employee> findByName(String name);
     
+    List<Employee> findByEmailDomain(String domain);
+    
+    List<Employee> findByDepartmentAndSortByName(String departmentName);
+    
     @Query("SELECT e FROM Employee e")
     List<EmployeeProjection> findAllEmployeeProjections();
     
     List<Employee> findByDepartmentId(Long departmentId);
+    
     
     // Custom query to find employees by a fragment of their name
     @Query("SELECT e FROM Employee e WHERE e.name LIKE %:nameFragment%")
@@ -31,7 +36,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Query(value = "SELECT * FROM employees e WHERE e.department_id = :departmentId", nativeQuery = true)
     List<Employee> findByDepartmentIdNative(@Param("departmentId") Long departmentId);
     
- // Paginate through employees
+    // Paginate through employees
     Page<Employee> findAll(Pageable pageable);
 
     // Paginate and search employees by department name
