@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.bookstore.dto.BookDTO;
 import com.bookstore.entity.Book;
 import com.bookstore.mapper.BookStoreMapper;
+import com.bookstore.metrics.CustomBookMetrics;
 import com.bookstore.repository.BookRepository;
 
 @Service
@@ -14,9 +15,9 @@ public class BookService {
 	
 	@Autowired
 	private BookRepository bookReposiotry;
-	
-	
 	private BookStoreMapper mapper  = BookStoreMapper.INSTANCE;
+	@Autowired
+	private CustomBookMetrics metrics;
 
 	public BookDTO getBookById(long id){
 		return mapper.bookToBookDTO(bookReposiotry.findById(id).orElse(null));
@@ -27,6 +28,7 @@ public class BookService {
 	}
 	
 	public Book createBook(BookDTO book) {
+		metrics.incrementBookCreationCounter();
 		return bookReposiotry.save(mapper.bookDTOToBook(book));
 	}
 	

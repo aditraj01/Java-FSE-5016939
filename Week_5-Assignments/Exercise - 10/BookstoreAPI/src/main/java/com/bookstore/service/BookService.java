@@ -14,8 +14,6 @@ public class BookService {
 	
 	@Autowired
 	private BookRepository bookReposiotry;
-	
-	
 	private BookStoreMapper mapper  = BookStoreMapper.INSTANCE;
 
 	public BookDTO getBookById(long id){

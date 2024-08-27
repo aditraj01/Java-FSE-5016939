@@ -12,7 +12,7 @@ import com.bookstore.entity.Customer;
 @Mapper
 public interface BookStoreMapper {
 	
-    public final BookStoreMapper INSTANCE = Mappers.getMapper(BookStoreMapper.class);
+    BookStoreMapper INSTANCE = Mappers.getMapper(BookStoreMapper.class);
 
     // Mapping methods for Book
     BookDTO bookToBookDTO(Book book);
@@ -21,8 +21,8 @@ public interface BookStoreMapper {
 
     // Mapping methods for Customer
     CustomerDTO customerToCustomerDTO(Customer customer);
-    
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "address", defaultValue = "India")
     Customer customerDTOToCustomer(CustomerDTO customerDTO);
 	List<CustomerDTO> customerToCustomerDTO(List<Customer> customers);
 	List<BookDTO> bookToBookDTO(List<Book> books);
