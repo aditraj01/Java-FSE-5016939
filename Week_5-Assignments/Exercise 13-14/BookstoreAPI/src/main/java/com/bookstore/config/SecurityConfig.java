@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -30,21 +31,20 @@ public class SecurityConfig {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
-//	@Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails userDetails = User.builder().
-//                username("admin")
-//                .password("admin").roles("ADMIN")
-//                .build();
-//        return new InMemoryUserDetailsManager(userDetails);
-//    }
+	private static final String[] SWAGGER_WHITELIST = {
+			"/auth/**", "/swagger-ui/**",
+			"/v3/api-docs/**",
+			"//v3/api-docs",
+			"/swagger-resources/**",
+			"/swagger-resources", "/swagger-ui.html"
+	};
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/auth/**").permitAll()
-						.anyRequest().authenticated())
+						.requestMatchers(SWAGGER_WHITELIST).permitAll()
+						.requestMatchers("/books/**", "/customers/**").authenticated())
 				.httpBasic(Customizer.withDefaults())
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(point))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -54,9 +54,14 @@ public class SecurityConfig {
 	}
 	
 	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder(15);
+	}
+	
+	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-		provider.setPasswordEncoder(new BCryptPasswordEncoder(15));
+		provider.setPasswordEncoder(passwordEncoder());
 		provider.setUserDetailsService(userDetailsService);
 		return provider;
 	}

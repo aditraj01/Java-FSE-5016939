@@ -6,7 +6,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.bookstore.entity.UserData;
 import com.bookstore.exception.UserAlreadyExistsError;
@@ -25,7 +25,8 @@ public class UserDataService {
 	@Autowired
 	private MyUserDetailService userDetailsService;
 	
-	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(15);
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	public UserData createUser(UserData user) {
 		user.setPassword(encoder.encode(user.getPassword()));
